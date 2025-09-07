@@ -35,15 +35,17 @@ module downstream_master
     output reg [1:0]    slave_sel,
     output reg          nack,
     output reg          ack_ready_dm,
-    output reg          will_ack_dm,
+    output reg          will_ack_dm
+    
+    
+    
+    `ifdef DEBUG
+    ,
     
     output reg [7:0]    data_out,
     output reg          valid_out,
     output reg          req_data_chunk,
-    output reg          busy
-    
-    `ifdef DEBUG
-    ,
+    output reg          busy,
         
     output reg [3:0]    state,
     output reg [3:0]    next_state,
@@ -98,7 +100,13 @@ module downstream_master
     
     
     `ifndef DEBUG
-    
+        
+        reg [7:0]    data_out;
+        reg          valid_out;
+        reg          req_data_chunk;
+        reg          busy;
+        
+        
         reg [3:0]    state;
         reg [3:0]    next_state;
         reg          reg_sda_a;
